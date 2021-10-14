@@ -6,7 +6,6 @@
 #include <iostream>
 #include <string>
 
-#define IGNORE_INPUT() std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
 namespace io::GraphReader {
     void ReadFromInput(GridGraph<GridCell>& _ret) {
