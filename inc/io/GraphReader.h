@@ -5,10 +5,11 @@
 #ifndef GRAPHFRAMEWORK_GRAPHREADER_H
 #define GRAPHFRAMEWORK_GRAPHREADER_H
 
+#include <graph/GridGraph.h>
 
-namespace GraphReader {
-    void ReadFromInput(GridGraph& _ret);
-};
+namespace io::GraphReader {
+    void ReadFromInput(GridGraph<GridCell>& _ret);
+}
 
 
 #endif //GRAPHFRAMEWORK_GRAPHREADER_H

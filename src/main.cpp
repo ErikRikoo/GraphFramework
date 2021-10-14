@@ -1,11 +1,14 @@
 #include <iostream>
+#include <io/GraphPrinter.h>
+#include <io/GraphReader.h>
 
 int main() {
-    Read
+    GridGraph<GridCell> graph;
+    io::GraphReader::ReadFromInput(graph);
+    io::GraphPrinter::Print(graph);
 
+    char input;
+    std::cin >> input;
 
-
-
-    std::cout << "Hello, World!" << std::endl;
     return 0;
 }

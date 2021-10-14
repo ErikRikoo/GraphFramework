@@ -10,11 +10,15 @@ struct Vector2 {
     T x;
     T y;
 
-    T width() {
+    Vector2() = default;
+
+    Vector2(T _x, T _y) : x(_x), y(_y) {}
+
+    T width() const {
         return x;
     }
 
-    T height() {
+    T height() const {
         return y;
     }
 };
