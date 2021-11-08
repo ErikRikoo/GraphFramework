@@ -6,6 +6,7 @@
 #define GRAPHFRAMEWORK_GRIDGRAPH_H
 
 #include <cstring>
+#include <memory>
 #include "utilities/Vector2.h"
 
 enum GridCell {
@@ -19,7 +20,7 @@ public:
     GridGraph() {}
 
     explicit GridGraph(Vector2<int> _dimension) : m_Dimension(_dimension) {
-        m_Data = new T[_dimension.x * _dimension.y];
+        m_Data = std::shared_ptr<T[]>(new T[_dimension.x * _dimension.y]);
     }
 
     GridGraph(Vector2<int> _dimension, T defaultValue) : GridGraph(_dimension) {
@@ -30,12 +31,10 @@ public:
     }
 
     GridGraph(GridGraph& _other) : GridGraph(_other.m_Dimension) {
-        std::memcpy(m_Data, _other.m_Data, m_Dimension.x * m_Dimension.y * sizeof(T));
+        std::memcpy(m_Data.get(), _other.m_Data.get(), m_Dimension.x * m_Dimension.y * sizeof(T));
     }
 
-    virtual ~GridGraph() {
-        delete[] m_Data;
-    }
+    virtual ~GridGraph() {}
 
     T& operator[](const Vector2<int> _index) {
         return m_Data[_index.y * m_Dimension.width() + _index.x];
@@ -46,7 +45,7 @@ public:
     }
 
 private:
-    T* m_Data;
+    std::shared_ptr<T[]> m_Data;
     Vector2<int> m_Dimension;
 };
 

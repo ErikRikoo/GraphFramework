@@ -25,12 +25,12 @@ namespace io::GraphReader {
 
         std::string input;
         std::cout << "You will now be able to enter obstacles. 'q' will stop the reading\n";
-        std::cout << "x y => obstacle at (x, y)\n";
+        std::cout << "x-y => obstacle at (x, y)\n";
         std::cin >> input;
         IGNORE_INPUT();
 
         while(tolower(input[0]) != 'q') {
-            int whitespacePosition = input.find(' ');
+            int whitespacePosition = input.find('-');
             Vector2<int> obstaclePosition (
                     std::stoi(input.substr(0, whitespacePosition)),
                     std::stoi(input.substr(whitespacePosition + 1))
