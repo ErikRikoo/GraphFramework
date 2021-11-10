@@ -6,10 +6,14 @@ int main() {
 //    GridGraph<GridCell> graph;
 //    io::GraphReader::ReadFromInput(graph);
 //    io::GraphPrinter::Print(graph);
+//
+//    GridGraph<float> graph;
+//    io::GraphReader::ReadFromFile("../data/valued-graph/simple", graph);
+//    io::GraphPrinter::Print<float>(graph, " ");
 
-    GridGraph<float> graph;
-    io::GraphReader::ReadFromFile("../data/valued-graph/simple", graph);
-    io::GraphPrinter::Print<float>(graph, " ");
+    ValuedOrientedGraph<std::string, float> graph;
+    io::GraphReader::ReadFromFile("../data/valued-graph/france-main-city", graph);
+    std::cout << graph;
 
 
 //    GridGraph<GridCell> graph2(Vector2<int>(5, 5));

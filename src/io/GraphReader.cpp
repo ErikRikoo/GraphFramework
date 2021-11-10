@@ -7,6 +7,7 @@
 #include <fstream>
 #include <string>
 #include <array>
+#include <sstream>
 
 
 namespace io::GraphReader {
@@ -43,7 +44,7 @@ namespace io::GraphReader {
         }
     }
 
-    void ReadFromFile(std::string _filename, GridGraph<float> &_ret) {
+    void ReadFromFile(const std::string& _filename, GridGraph<float> &_ret) {
         std::ifstream file(_filename, std::ios::in);
 
         std::string buffer;
@@ -65,6 +66,30 @@ namespace io::GraphReader {
             }
         }
 
+        file.close();
+    }
+
+    void ReadFromFile(const std::string& _filename, ValuedOrientedGraph<std::string, float> &_ret) {
+        constexpr char delimitor = ';';
+        std::ifstream file(_filename, std::ios::in);
+        std::string lineBuffer;
+        std::string cellBuffer;
+
+        while(std::getline(file, lineBuffer)) {
+            std::istringstream lineBufferStream(lineBuffer);
+
+            std::string firstNode;
+            std::getline(lineBufferStream, firstNode, delimitor);
+
+            std::string secondNode;
+            std::getline(lineBufferStream, secondNode, delimitor);
+
+
+            std::getline(lineBufferStream, cellBuffer, delimitor);
+            float value = std::stof(cellBuffer);
+
+            _ret.Insert(std::make_pair(firstNode, secondNode), value);
+        }
         file.close();
     }
 }
