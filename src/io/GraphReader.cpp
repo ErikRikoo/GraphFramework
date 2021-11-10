@@ -4,7 +4,9 @@
 
 #include "io/GraphReader.h"
 #include <iostream>
+#include <fstream>
 #include <string>
+#include <array>
 
 
 namespace io::GraphReader {
@@ -39,5 +41,30 @@ namespace io::GraphReader {
             std::cin >> input;
             IGNORE_INPUT();
         }
+    }
+
+    void ReadFromFile(std::string _filename, GridGraph<float> &_ret) {
+        std::ifstream file(_filename, std::ios::in);
+
+        std::string buffer;
+        std::getline(file, buffer);
+        int dimensionX = std::stoi(buffer.data());
+        std::getline(file, buffer);
+        int dimensionY = std::stoi(buffer.data());
+        Vector2<int> dimension(dimensionX, dimensionY);
+        _ret = GridGraph<float>(dimension);
+        for(int y = 0; y < dimension.y; ++y) {
+            std::getline(file, buffer);
+            size_t rowCharacterConsumed = 0;
+            for(int x = 0; x <dimensionX; ++x) {
+                size_t characterConsumed;
+                float value = std::stof(buffer.substr(rowCharacterConsumed), &characterConsumed);
+
+                _ret[Vector2<int>(x, y)] = value;
+                rowCharacterConsumed += characterConsumed;
+            }
+        }
+
+        file.close();
     }
 }

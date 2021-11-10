@@ -6,12 +6,15 @@
 #define GRAPHFRAMEWORK_GRAPHREADER_H
 
 #include <graph/GridGraph.h>
+#include <string>
 
 #define IGNORE_INPUT() std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
 
+
 namespace io::GraphReader {
     void ReadFromInput(GridGraph<GridCell>& _ret);
+    void ReadFromFile(std::string _filename, GridGraph<float> &_ret);
 }
 
 
