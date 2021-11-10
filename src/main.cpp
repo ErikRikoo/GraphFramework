@@ -1,11 +1,15 @@
 #include <iostream>
 #include <io/GraphPrinter.h>
 #include <io/GraphReader.h>
+#include <graph-traversal/GraphTraversal.h>
 
 int main() {
     GridGraph<GridCell> graph;
     io::GraphReader::ReadFromInput(graph);
-    io::GraphPrinter::Print(graph);
+    std::vector<Vector2<int>> path;
+    Vector2<int> goal = graph.dimension() + Vector2<int>(-1, -1);
+    GraphTraversal::breadthFirstSearch(graph, path, Vector2<int>(0, 0), goal);
+    io::GraphPrinter::Print(graph, path);
 
 //    GridGraph<GridCell> graph2(Vector2<int>(5, 5));
 //    std::vector<Vector2<int>> path;
