@@ -16,7 +16,8 @@
 namespace io::GraphReader {
     void ReadFromInput(GridGraph<GridCell>& _ret);
     void ReadFromFile(const std::string& _filename, GridGraph<float> &_ret);
-    void ReadFromFile(const std::string& _filename, ValuedOrientedGraph<std::string, float> &_ret);
+    void ReadFromFile(const std::string& _filename, ValuedOrientedGraph<std::string, float> &_ret,
+                      bool shouldBeNonOriented = false );
 }
 
 

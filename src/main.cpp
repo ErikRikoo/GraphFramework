@@ -12,7 +12,7 @@ int main() {
 //    io::GraphPrinter::Print<float>(graph, " ");
 
     ValuedOrientedGraph<std::string, float> graph;
-    io::GraphReader::ReadFromFile("../data/valued-graph/france-main-city", graph);
+    io::GraphReader::ReadFromFile("../data/valued-graph/france-main-city", graph, true);
     std::cout << graph;
 
 

@@ -38,6 +38,18 @@ public:
         return secondIterator == firstIterator.end() ? _default : *secondIterator;
     }
 
+    bool getNeighbors(Node _vertex, const std::map<Node, Value>& _ret) {
+        auto iterator = m_Data.find(_vertex);
+        if(iterator == m_Data.end()) {
+            return false;
+        }
+
+        _ret = *iterator;
+        return true;
+    }
+
+
+
     friend std::ostream & operator<<(std::ostream & _str, const OwnType& _obj) {
         for (const auto &item : _obj.m_Data) {
             for(const auto &secondItem : item.second) {

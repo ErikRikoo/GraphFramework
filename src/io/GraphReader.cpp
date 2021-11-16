@@ -69,7 +69,8 @@ namespace io::GraphReader {
         file.close();
     }
 
-    void ReadFromFile(const std::string& _filename, ValuedOrientedGraph<std::string, float> &_ret) {
+    void ReadFromFile(const std::string& _filename, ValuedOrientedGraph<std::string, float> &_ret,
+        const bool shouldBeNonOriented) {
         constexpr char delimitor = ';';
         std::ifstream file(_filename, std::ios::in);
         std::string lineBuffer;
@@ -89,6 +90,9 @@ namespace io::GraphReader {
             float value = std::stof(cellBuffer);
 
             _ret.Insert(std::make_pair(firstNode, secondNode), value);
+            if(shouldBeNonOriented) {
+                _ret.Insert(std::make_pair(secondNode, firstNode), value);
+            }
         }
         file.close();
     }
