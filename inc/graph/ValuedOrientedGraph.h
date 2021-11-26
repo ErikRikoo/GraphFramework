@@ -46,13 +46,13 @@ public:
         }
     }
 
-    bool getNeighbors(Node _vertex, const std::map<Node, Value>& _ret) {
+    bool getNeighbors(Node _vertex, std::map<Node, Value>& _ret) {
         auto iterator = m_Data.find(_vertex);
         if(iterator == m_Data.end()) {
             return false;
         }
 
-        _ret = *iterator;
+        _ret = iterator->second;
         return true;
     }
 

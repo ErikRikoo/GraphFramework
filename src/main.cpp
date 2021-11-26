@@ -21,6 +21,9 @@ int main() {
         std::cout << node << std::endl;
     }
 
+    std::map<std::string, float> test;
+    graph.getNeighbors("Paris", test);
+
 
 //    GridGraph<GridCell> graph2(Vector2<int>(5, 5));
 //    std::vector<Vector2<int>> path;
