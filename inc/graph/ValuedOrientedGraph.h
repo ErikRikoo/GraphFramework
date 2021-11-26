@@ -8,6 +8,7 @@
 #include <map>
 #include <utility>
 #include <string>
+#include <vector>
 
 template<typename Node, typename Value>
 class ValuedOrientedGraph {
@@ -33,9 +34,16 @@ public:
             return _default;
         }
 
-        auto secondIterator = firstIterator.find(_vertices.second);
+        auto secondIterator = (*firstIterator).second.find(_vertices.second);
 
-        return secondIterator == firstIterator.end() ? _default : *secondIterator;
+        return secondIterator == (*firstIterator).second.end() ? _default : (*secondIterator).second;
+    }
+
+    void getNodes(std::vector<Node>& _out) {
+        _out = std::vector<Node>(m_Data.size());
+        for(auto [key, value]: m_Data) {
+            _out.push_back(key);
+        }
     }
 
     bool getNeighbors(Node _vertex, const std::map<Node, Value>& _ret) {

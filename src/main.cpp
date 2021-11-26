@@ -14,6 +14,12 @@ int main() {
     ValuedOrientedGraph<std::string, float> graph;
     io::GraphReader::ReadFromFile("../data/valued-graph/france-main-city", graph, true);
     std::cout << graph;
+    graph.get(std::make_pair("aa", "aaa"), 1000);
+    std::vector<std::string> nodes;
+    graph.getNodes(nodes);
+    for(auto node : nodes) {
+        std::cout << node << std::endl;
+    }
 
 
 //    GridGraph<GridCell> graph2(Vector2<int>(5, 5));
